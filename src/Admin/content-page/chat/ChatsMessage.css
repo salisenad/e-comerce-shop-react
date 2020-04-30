@@ -1,0 +1,13 @@
+.bg-color {
+    background-color: #ebebeb !important
+}
+.border-chat {
+    border: 1px solid #c4c4c4
+}
+.date-size {
+    font-size: 13px;
+}
+.search-filter {
+    border: none;
+    border-bottom: 1px solid black;
+}
