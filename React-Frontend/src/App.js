@@ -5,6 +5,9 @@ import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
 import Home from './Shop/Home/Home';
 import Login from './Auth/Login';
 import AdminDashboard from './Admin/AdminDashboard';
+import AboutUs from './Shop/Home/about-us/AboutUs';
+import ContactUs from './Shop/Home/contact-us/ContactUs';
+import ViewCart from './Shop/Home/checkout/ViewCart';
 
 function App() { 
   const AdminRouter = ({ component: Component, ...props }) => {
@@ -32,9 +35,10 @@ function App() {
               <Switch>
                 <Route  path="/" exact component={Home}/>
                 <Route path="/login" exact component={Login} />
+                <Route path="/about-us" exact component={AboutUs} />
+                <Route path="/contact-us" exact component={ContactUs} />
+                <Route path="/view-cart" exact component={ViewCart} />
                 <AdminRouter path="/dashboard" exact component={AdminDashboard}/>  
-                {/* <AdminRouter path="/product" exact={true} component={ProductPages} />
-                <AdminRouter path="/category" exact={true} component={CategoryPage} />         */}
               </Switch>
           </BrowserRouter>
       </Suspense>

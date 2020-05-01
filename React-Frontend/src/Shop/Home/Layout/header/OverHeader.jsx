@@ -8,15 +8,13 @@ class OverHeader extends Component {
                     <div className="row">
                         <div className="col-md-12  ">
                             <div className="row">
-                            <div className="text-white ml-5  cursor-pointer">About Us</div>
-                            <div className="text-white ml-3 mr-5 cursor-pointer">Kontakte</div>
+                            <Link className="text-white ml-5  cursor-pointer" to="/about-us">About Us</Link>
+                            <Link className="text-white ml-3 mr-5 cursor-pointer" to="/contact-us">Contact</Link>
                             <div className="text-white ml-5 cursor-pointer">
-                             <Link className=" text-white" to="/login"> Login or Register</Link>   
+                             <Link className=" text-white cursor-pointer" to="/login"> Admin Login</Link>   
                             </div>
                             </div>
                         </div>
-                        {/* <div className="col-md-6 col-sm-3">
-                        </div> */}
                     </div>
             </div>
          );

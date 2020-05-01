@@ -30,7 +30,7 @@ class CarouselUp extends Component {
     }
     render() { 
         return (
-            <Carousel className="pt-5">
+            <Carousel className="">
               {this.carouselList()}
             </Carousel>
           );

@@ -99,7 +99,7 @@ const CssTextField = withStyles({
       const isEnabled = username.length > 0 && password.length > 0;
       return (
           <Fragment>
-          <Header />
+          <Header items={JSON.parse(localStorage.getItem('cart'))}/>
       <div className="container-fluid position-absolute" style={{'marginTop': '13%'}}>
         <div className="container">
           <div className="border p-5">
