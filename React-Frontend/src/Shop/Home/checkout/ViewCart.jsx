@@ -53,13 +53,7 @@ const ViewCart = () => {
     const handleChange = e => {
         setName(e.target.value);
     };
-    // const handleChange = productId => event => {
-    //     setRun(!run); // run useEffect in parent Cart
-    //     setItems(event.target.value < 1 ? 1 : event.target.value);
-    //     if (event.target.value >= 1) {
-    //       updateItem(productId, event.target.value);
-    //     }
-    //   };
+
 
     const cartTotal = () => {
         return (
@@ -67,9 +61,9 @@ const ViewCart = () => {
                 <div className="container">
                 <div className="row mt-5 mb-5">
                     <div className="offset-sm-7"></div>
-                    <div className="col-sm-5 border-style p-4">
-                        <h3 className="font-weight-bold">Cart Totals</h3>
-                    <p className="font-weight-bold h6 mt-4">Total price <span className="float-right">€{Number(findSubTotalPrice()).toFixed(2)}</span> </p>
+                    <div className="col-sm-5 border-style p-5">
+                        <h3 className="font-weight-bold mb-4">Cart Totals</h3>
+                    <p className="font-weight-bold h6 mt-4">Subtotal price <span className="float-right">€{Number(findSubTotalPrice()).toFixed(2)}</span> </p>
                     <hr className="border"/>
                 <p className="font-weight-bold h6 mt-4">Shipping 
                 <span className="float-right">€{Number(shippingValue).toFixed(2)}
@@ -77,7 +71,9 @@ const ViewCart = () => {
                 <p className="font-weight-bold h6 mt-4 mb-4">Tax <span className="float-right">€{Number(taxValue).toFixed(2)}</span> </p>
                 <hr className="border"/>
                 <p className="font-weight-bold h4 mt-4">Total <span className="float-right">€{Number( totalPrice() + shippingValue + taxValue).toFixed(2) }</span> </p>
-
+                    <div className="mt-5">
+                        <Link className="btn btn-success btn-block btn-xl p-3 h3 font-weight-bold"  to="/checkout">Checkout</Link>
+                    </div>
                     </div>
                 </div>
                 </div>

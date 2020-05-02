@@ -8,6 +8,7 @@ import AdminDashboard from './Admin/AdminDashboard';
 import AboutUs from './Shop/Home/about-us/AboutUs';
 import ContactUs from './Shop/Home/contact-us/ContactUs';
 import ViewCart from './Shop/Home/checkout/ViewCart';
+import Checkout from './Shop/Home/checkout/Checkout';
 
 function App() { 
   const AdminRouter = ({ component: Component, ...props }) => {
@@ -38,6 +39,7 @@ function App() {
                 <Route path="/about-us" exact component={AboutUs} />
                 <Route path="/contact-us" exact component={ContactUs} />
                 <Route path="/view-cart" exact component={ViewCart} />
+                <Route path="/checkout" exact component={Checkout} />
                 <AdminRouter path="/dashboard" exact component={AdminDashboard}/>  
               </Switch>
           </BrowserRouter>

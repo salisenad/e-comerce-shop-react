@@ -64,10 +64,7 @@ const http = new CategoriesService();
 
   const noItemsMessage = () => (
     <div className="p-5">
-    <h5>
-        Your cart is empty! <br /> 
-        {} 
-    </h5>
+    <h5>Your cart is empty! <br /> </h5>
     </div>
 );
 
@@ -77,7 +74,6 @@ const http = new CategoriesService();
     })
   }
   
- 
   const cartList = () => (
     <div className="cart-count-position dropleft">
                 <i className="fa  fa-shopping-cart mt-3 h3 text-white cursor-pointer " 
@@ -88,6 +84,7 @@ const http = new CategoriesService();
                 </span> 
                 <div class="dropdown-menu dropdown-size">
                     {items.length > 0 ? items.map(item => 
+                    <div>
                         <div className="row p-3 ">
                         <div className="col-sm-4">
                             <div>
@@ -108,49 +105,27 @@ const http = new CategoriesService();
                         </div>
                        
                         </div>
+                        </div>
+
+                        
                     ) : noItemsMessage()}
                      {items.length > 0 ?
-                       <div className="container border-top mb-3">
-                        <div className="row mt-3 mb-4">
-                          <div className="col-sm-12 ">
-                            <div className="float-left">
-                             <b>Subtotal</b> 
-                            </div>
-                            <div className="float-right">
-                            €{Number(findSubTotalPrice()).toFixed(2)}
-                            </div>
-                         </div>
-                          <div className="col-sm-12">
-                            <div className="float-left mt-2">
-                               <b>Shipping</b> 
-                            </div>
-                            <div className="float-right mt-2">
-                                €{Number(shippingValue).toFixed(2)}
-                            </div>
-                          </div> 
-                          <div className="col-sm-12">
-                            <div className="float-left mt-2">
-                               <b>Tax</b> 
-                            </div>
-                            <div className="float-right mt-2">
-                                €{Number(taxValue).toFixed(2)}
-                            </div>
-                          </div> 
-                          <div className="col-sm-12 mb-3">
-                            <div className="float-left mt-2">
-                               <b>Total</b> 
-                            </div>
-                            <div className="float-right mt-2">
-                               <b>€{Number(findTotalPrice() + shippingValue + taxValue).toFixed(2) }</b> 
-                            </div>
-                          </div>
-                          <div className="col-sm-6 ">
+                       <div className="container border-top mb-1">
+                        <div className=" mt-3 mb-2">
+                        <p className="font-weight-bold h6 mt-4">Subtotal <span className="float-right">€{Number(findSubTotalPrice()).toFixed(2)}</span> </p>
+                <p className="font-weight-bold h6 mt-4">Shipping 
+                <span className="float-right">€{Number(shippingValue).toFixed(2)}
+                </span> </p>
+                <p className="font-weight-bold h6 mt-4 mb-4">Tax <span className="float-right">€{Number(taxValue).toFixed(2)}</span> </p>
+                <p className="font-weight-bold h5 mt-2">Total <span className="float-right">€{Number( findTotalPrice() + shippingValue + taxValue).toFixed(2) }</span> </p>
+                      <div className="row mt-5 ">
+                    <div className="col-sm-6 ">
                           <Link className="btn btn-outline-light bg-secondary text-white float-right" to="/view-cart" style={{width:' 100%'}}>View Cart</Link>
                           </div>
                           <div className="col-sm-6 ">
-                          <Link className="btn btn-success float-left" style={{width:' 100%'}}>Checkout</Link>
-                          </div>
-
+                          <Link className="btn btn-success float-left" style={{width:' 100%'}} to="/checkout">Checkout</Link>
+                          </div> 
+                          </div>                             
                         </div>
                         </div>
                          : ''} 
