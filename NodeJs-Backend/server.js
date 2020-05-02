@@ -199,6 +199,47 @@ var categories = [
             ]
     },
 ]
+
+var orders = [
+    {
+    "id": "1",
+    "firstName": "Senad",
+    "lastName": "Salihu",
+    "email": "senad.sali3@gmail.com",
+    "products": [
+        {
+            "id" : "1",
+            "title": "Product one",
+            "price": 10,
+            "description": "Good product",
+            "allowInShop": '1',
+            "imgUrl" : 'https://i.pinimg.com/236x/24/d2/74/24d2746955831bd38a8bf62060162f2b.jpg',
+            "categoryName": "Trockenware"
+            
+        },
+        {
+            "id" : "2",
+            "title": "Product two",  
+            "price": 20.20, 
+            "description": "Good product",
+            "allowInShop": '1',
+            "imgUrl" : 'https://thumbs.dreamstime.com/b/beautiful-attractive-girl-night-beach-sand-stars-hugs-moon-artistic-photography-137715461.jpg',
+            "categoryName": "Kuhlprodukte"
+    
+        },    
+            
+        {
+            "id" : "3",
+            "title": "Product three",
+            "price": 30,
+            "description": "Good product",
+            "allowInShop": '1',
+            "imgUrl" : 'https://thumbs.dreamstime.com/b/beautiful-attractive-girl-night-beach-sand-stars-hugs-moon-artistic-photography-137715461.jpg',
+            "categoryName": "Trockenware"
+    
+        },  
+    ]
+}]
 var carouselImages = [
     {
         "id": "1",
@@ -215,6 +256,25 @@ var carouselImages = [
         "caruselUrl": "https://jpcamara.com/wp-content/uploads/2015/02/carousel.jpg"
     }
 ]
+
+//Crud for orders
+app.get('/orders', function(request, response){
+    response.send(orders)
+}) 
+
+app.post('/create/orders', function(request, response) {
+    var order = request.body;
+    if(!order || order.title === "") {
+        response.status(500).send({error: "Your order must have an name of customer"})
+    }else {
+        orders.push(order);
+        if(!order.id) {
+            order.id = Math.floor((Math.random() * 10000) + 1).toString()
+        }
+        response.status(200).send(order)
+    }
+})
+//
 
 // Crud for products
 app.get('/products', function(request, response){
@@ -291,12 +351,27 @@ app.delete('/products/:productId', function(request, response){
 app.get('/categories', function (request, response) {
     response.send(categories);
 })
-
+app.post('/create/categories', function(request, response) {
+    var category = request.body;
+    if(!category || category.categoryName === "") {
+        response.status(500).send({error: "Your category must have an name"})
+    }else {
+        categories.push(category);
+        if(!category.id) {
+            category.id = Math.floor((Math.random() * 10000) +1).toString()
+        }
+        response.status(200).send(category)
+    }
+})
 
 // Crud for Carousels
 app.get('/carousels', function(request, response){
     response.send(carouselImages);
 })
+
+
+
+
 app.post('/create/carousels', function(request, response) {
     var carousel = request.body;
     if(!carousel || carousel.carouselImages === "") {

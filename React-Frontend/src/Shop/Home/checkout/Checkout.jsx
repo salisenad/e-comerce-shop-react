@@ -1,18 +1,30 @@
 import React, { Fragment, useState, useEffect }  from 'react';
 import Header from '../Layout/header/Header';
 import { getCart } from '../cart-helper/cartHelper';
-import { Link } from 'react-router-dom';
+import OrderService from '../../../services/order-service';
+import Swal from "sweetalert2";
+import { Redirect, Route, Link } from 'react-router-dom';
+import Home from '../Home';
 
-
-const Checkout = ()  => {
+const http = new OrderService();
+const Checkout = (props)  => {
     const [run, setRun] = useState(false);
     const [items, setItems] = useState([]);
+    const initalFormState = {id: '', firstName: '', email: '', lastName: ''}
+    const [order, setOrder] = useState(initalFormState)
+
+
     let shippingValue = 12.50;
     let taxValue = 7.55;
     useEffect(() => {
         setItems(getCart());
-
     },[run])
+
+
+    const handleInputChange = event => {
+      const {name, value} = event.target
+      setOrder({...order, [name]: value})
+    }
 
     const findSubTotalPrice = () => {
         var priceList = []
@@ -38,6 +50,32 @@ const Checkout = ()  => {
         return totalPrc
     }
 
+  const createOrderData = {
+    id: order.id,
+    firstName: order.firstName,
+    lastName: order.lastName,
+    email: order.email,
+    products:  items,
+};
+
+
+    const clickSubmit = event => {
+      event.preventDefault();
+      http.createOrder(createOrderData).then(data => {
+        console.log('order qe pe qoj', createOrderData)
+        console.log('order qe pe qoj', createOrderData)
+        console.log('order qe pe qoj', createOrderData)
+
+        Swal.fire({title: "Order Success",icon: "success",text: "You Ordered Successfully",
+           timer: 5000})
+           localStorage.setItem('cart', JSON.stringify([]));
+
+          //  localStorage.removeItem('cart');
+           props.history.push("/");
+
+       });
+      };
+      
     const billingDetails = () => {
       return (
           <div className="col-sm-12 border p-5">
@@ -45,18 +83,21 @@ const Checkout = ()  => {
               <div className="row">
               <div className="form-group col-sm-6">
                   <label>First Name</label>
-                  <input type="text" placeholder="First Name" className="form-control"/>
+                  <input type="hidden" name="id" onChange={handleInputChange} placeholder="First Name" className="form-control"/>
+
+                  <input type="text" name="firstName" onChange={handleInputChange} placeholder="First Name" className="form-control"/>
               </div>
               <div className="form-group  col-sm-6">
                   <label>Last Name</label>
-                  <input type="text" placeholder="Last Name" className="form-control"/>
+                  <input type="text" name="lastName" onChange={handleInputChange} placeholder="Last Name" className="form-control"/>
               </div>
               <div className="form-group  col-sm-12">
                   <label>Email</label>
-                  <input type="text" placeholder="Write Your Email" className="form-control"/>
+                  <input type="text" name="email"  onChange={handleInputChange} placeholder="Write Your Email" className="form-control"/>
               </div>
               </div>
           </div>
+
       )
     }
 
@@ -75,7 +116,6 @@ const Checkout = ()  => {
                 <div className="col-sm-7 mb-3">{item.title} × {item.count}</div>
                 <div className="col-sm-5 text-right">€{Number(item.price * item.count).toFixed(2)}</div>
                 </Fragment>
-                // <div className="col-sm-4 text-right">{item.price}</div>
                 )}
               </div>
 
@@ -90,12 +130,15 @@ const Checkout = ()  => {
               
               <div className="row">
               <div className="col-sm-6 font-weight-bold mb-3 h3 mt-2">Total</div>
-              <div className="col-sm-6 text-right float-right mb-3 h5 mt-3 font-weight-bold">€{Number( totalPrice() + shippingValue + taxValue).toFixed(2) }</div>
-             
+              <div className="col-sm-6 text-right float-right mb-3 h5 mt-3 font-weight-bold">
+                €{Number( totalPrice() + shippingValue + taxValue).toFixed(2) }
+                </div>
               </div>
               <div className="mt-5">
-                        <Link className="btn btn-success btn-block btn-xl p-3 h3 font-weight-bold"  to="/checkout">Place Order</Link>
-                    </div>
+               <button className="btn btn-success btn-block btn-xl p-3 h3 font-weight-bold" href="/" >
+                 Place Order
+                 </button>
+              </div>
           </div>
         )
     }
@@ -106,8 +149,10 @@ const Checkout = ()  => {
                 <div className="container fluid ">
                     <div className="container mt-5 position-absolute">
                         <h2 className="font-weight-bold" style={{marginTop: '8%'}}>Checkout</h2>
-                    
+                        <form className="mb-3 " onSubmit={clickSubmit}>
+
                         <div className="row mt-5">
+
                             <div className="col-sm-7">
                                 {billingDetails()}
                             </div>
@@ -115,6 +160,8 @@ const Checkout = ()  => {
                                     {yourOrder()}
                             </div>
                         </div>
+                        </form>
+
                     </div>
                 </div>
             </Fragment>
