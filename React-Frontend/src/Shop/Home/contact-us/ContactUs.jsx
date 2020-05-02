@@ -1,41 +1,43 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment, useState } from "react";
 import Header from "../Layout/header/Header";
 import TextField from "@material-ui/core/TextField";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { withStyles } from "@material-ui/core/styles";
-const CssTextField = withStyles({
-    root: {
-      "& label.Mui-focused": {
-        color: "#1B1B23",
-        opacity: "0.6",
-        fontSize: "18px",
-        letterSpacing: "0.2px"
-      },
-      "& label": {
-        marginLeft: "5px",
-        fontSize: "18px",
-        marginTop: "-6px"
-      },
-  
-      "& .MuiInput-underline:after": {
-        borderBottomColor: "#B71C1C",
-        outline: 0
-      },
-  
-      "& .MuiInput-underline:before": {
-        borderBottomColor: "#B71C1C"
-      },
-      "& .MuiInput-underline:hover": {
-        borderBottomColor: "#B71C1C"
+
+  const  ContactUs = () => {
+    const [run, setRun] = useState(false);
+    const CssTextField = withStyles({
+      root: {
+        "& label.Mui-focused": {
+          color: "#1B1B23",
+          opacity: "0.6",
+          fontSize: "18px",
+          letterSpacing: "0.2px"
+        },
+        "& label": {
+          marginLeft: "5px",
+          fontSize: "18px",
+          marginTop: "-6px"
+        },
+    
+        "& .MuiInput-underline:after": {
+          borderBottomColor: "#B71C1C",
+          outline: 0
+        },
+    
+        "& .MuiInput-underline:before": {
+          borderBottomColor: "#B71C1C"
+        },
+        "& .MuiInput-underline:hover": {
+          borderBottomColor: "#B71C1C"
+        }
       }
-    }
-  })(TextField);
-  class ContactUs extends Component {
-    render() {
+    })(TextField);
       return (
         <Fragment>
-        <Header items={JSON.parse(localStorage.getItem('cart'))}/>
+        <Header setRun={setRun} run={run}
+        items={JSON.parse(localStorage.getItem('cart'))}/>
         <div className="container-fluid position-absolute" style={{'marginTop': '13%'}}>
         <div className="container">
             <div className="border p-5">
@@ -72,7 +74,6 @@ const CssTextField = withStyles({
 
       </Fragment>
       );
-    }
   }
   
   export default ContactUs;

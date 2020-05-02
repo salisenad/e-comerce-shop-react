@@ -19,15 +19,6 @@ export const addItem = (item = [], count = 0, next = f => f) => {
 
 
 
-export const itemTotal = () => {
-    if (typeof window !== 'undefined') {
-        if (localStorage.getItem('cart')) {
-            return JSON.parse(localStorage.getItem('cart')).length;
-        }
-    }
-    return 0;
-};
-
 export const getCart = () => {
     if (typeof window !== 'undefined') {
         if (localStorage.getItem('cart')) {
@@ -74,9 +65,3 @@ export const removeItem = productId => {
     return cart;
 };
 
-export const emptyCart = next => {
-    if (typeof window !== 'undefined') {
-        localStorage.removeItem('cart');
-        next();
-    }
-};

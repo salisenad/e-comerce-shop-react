@@ -1,13 +1,150 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, useState, useEffect } from 'react';
 import Header from '../Layout/header/Header';
-
+import './Checkout.css'
+import { getCart, removeItem, updateItem } from '../cart-helper/cartHelper';
+import { Link } from 'react-router-dom';
 const ViewCart = () => {
+    const [name, setName] = useState("");
 
+    const [run, setRun] = useState(false);
+    const [items, setItems] = useState([]);
+    // const [count, setCount] = useState(items.count);
 
+    let shippingValue = 12.50;
+    let taxValue = 7.55;
+    useEffect(() => {
+        setItems(getCart());
+
+    },[run])
+
+    const showNoProductsView = () => {
+        return (
+        <div className=" mt-5">
+            <h4 className="">No Items In Cart</h4>
+           <Link className="btn btn-success h4 mt-3" to="/">{'<'} Continue Shopping </Link>
+        </div>
+        )
+    }
+
+    const findSubTotalPrice = () => {
+        var priceList = []
+        var subTotalPrice = 0;
+        items.map(items => {
+          priceList.push(items.price)
+        })
+        priceList.map(prices => {
+          subTotalPrice += prices
+        })
+        return subTotalPrice
+      }
+
+      const totalPrice = () => {
+          var totalPriceList = []
+          var totalPrc = 0;
+          items.map(items =>{
+            totalPriceList.push(items.price *  items.count)
+          })
+          totalPriceList.map(prices =>{
+            totalPrc += prices
+          })
+          return totalPrc
+      }
+
+    const handleChange = e => {
+        setName(e.target.value);
+    };
+    // const handleChange = productId => event => {
+    //     setRun(!run); // run useEffect in parent Cart
+    //     setItems(event.target.value < 1 ? 1 : event.target.value);
+    //     if (event.target.value >= 1) {
+    //       updateItem(productId, event.target.value);
+    //     }
+    //   };
+
+    const cartTotal = () => {
+        return (
+            <div>
+                <div className="container">
+                <div className="row mt-5 mb-5">
+                    <div className="offset-sm-7"></div>
+                    <div className="col-sm-5 border-style p-4">
+                        <h3 className="font-weight-bold">Cart Totals</h3>
+                    <p className="font-weight-bold h6 mt-4">Total price <span className="float-right">€{Number(findSubTotalPrice()).toFixed(2)}</span> </p>
+                    <hr className="border"/>
+                <p className="font-weight-bold h6 mt-4">Shipping 
+                <span className="float-right">€{Number(shippingValue).toFixed(2)}
+                </span> </p>
+                <p className="font-weight-bold h6 mt-4 mb-4">Tax <span className="float-right">€{Number(taxValue).toFixed(2)}</span> </p>
+                <hr className="border"/>
+                <p className="font-weight-bold h4 mt-4">Total <span className="float-right">€{Number( totalPrice() + shippingValue + taxValue).toFixed(2) }</span> </p>
+
+                    </div>
+                </div>
+                </div>
+
+                )
+            
+           
+            </div>
+        )
+    }
+
+    const itemsList = () => {
+        return (
+            <tbody >
+            {items.map(item => 
+               <tr key={item.id} >
+               <th style={{width:'15%'}}>
+                   <img src={item.imgUrl} style={{width: '100%'}} alt=""/>
+               </th>
+               <td  className="align-middle">{item.title} <br/> <p style={{fontSize: '12px'}}>{item.description}</p></td>
+               <td  className="align-middle">{Number(item.price).toFixed(2)}</td>
+                <td  className="align-middle">
+                <div className="input-number">
+                <input className="form-control" type="number" onChange={handleChange} min="0" value={item.count}/>
+                <div className="input-number__add">
+                </div>
+                <div className="input-number__sub">
+                </div>
+                </div>
+                </td>
+                <td  className="align-middle">{Number(item.price * item.count).toFixed(2)}</td>
+               <td  className="align-middle">
+                   <button className="btn btn-light btn-sm" onClick={() => {removeItem(item.id); setRun(!run); }}>X</button>
+               </td>
+               </tr> 
+                ) }
+        </tbody>
+        
+        )
+    }
     return (
         <Fragment>
-            <Header items={JSON.parse(localStorage.getItem('cart'))}/>
-            <div></div>
+            <Header setRun={setRun} run={run} items={JSON.parse(localStorage.getItem('cart'))}/>
+           <div className="container-fluid position-absolute">
+                <div className="container">
+                    <h2 className="table-position font-weight-bold">Shopping cart</h2>
+                    {items.length > 0 ? 
+                    <div>
+                    <table class="table border-style mt-5">
+                    <thead style={{backgroundColor: '#f7f7f7'}}>
+                        <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total</th>
+                        <th scope="col"></th>
+
+                        </tr>
+                    </thead>
+                   {itemsList()}
+                    </table>
+                    {cartTotal()}
+                    </div>: showNoProductsView()}
+                    
+                </div>
+            </div> 
         </Fragment>
     )
 }

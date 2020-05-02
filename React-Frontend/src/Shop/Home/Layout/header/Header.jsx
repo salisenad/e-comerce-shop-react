@@ -15,6 +15,8 @@ const http = new CategoriesService();
     setRun = f => f, run = undefined})  =>{
     const [categories , setCategories] = useState([])
     const [productOnCart, setItems] = useState([]);
+    let taxValue = 7.55;
+    let shippingValue = 12.50;
 
       useEffect(() => {
        loadCategories();
@@ -46,15 +48,19 @@ const http = new CategoriesService();
       })
       return subTotalPrice
     }
+
+    const findTotalPrice = () => {
+      var totalPriceList = []
+      var totalPrc = 0;
+      items.map(items =>{
+        totalPriceList.push(items.price *  items.count)
+      })
+      totalPriceList.map(prices =>{
+        totalPrc += prices
+      })
+      return totalPrc
+  }
     
-    const shippingExample = () => {
-      var shippingValue = 12.50;
-      return shippingValue
-    }
-    const taxExample = () => {
-      var taxValue = 7.55;
-      return taxValue
-    }
 
   const noItemsMessage = () => (
     <div className="p-5">
@@ -96,7 +102,7 @@ const http = new CategoriesService();
                         <div className="col-sm-2">
                           <div className="mr-2">
                             <button onClick={() => { removeItem(item.id); setRun(!run); }}
-                              className="btn btn-outline-danger mr-1 mt-2 mb-2">X
+                              className="btn btn-light btn-sm mr-1 mt-2 mb-2">X
                              </button>
                             </div>  
                         </div>
@@ -119,7 +125,7 @@ const http = new CategoriesService();
                                <b>Shipping</b> 
                             </div>
                             <div className="float-right mt-2">
-                                €{Number(shippingExample()).toFixed(2)}
+                                €{Number(shippingValue).toFixed(2)}
                             </div>
                           </div> 
                           <div className="col-sm-12">
@@ -127,7 +133,7 @@ const http = new CategoriesService();
                                <b>Tax</b> 
                             </div>
                             <div className="float-right mt-2">
-                                €{Number(taxExample()).toFixed(2)}
+                                €{Number(taxValue).toFixed(2)}
                             </div>
                           </div> 
                           <div className="col-sm-12 mb-3">
@@ -135,7 +141,7 @@ const http = new CategoriesService();
                                <b>Total</b> 
                             </div>
                             <div className="float-right mt-2">
-                               <b>€{Number(findSubTotalPrice() + shippingExample() + taxExample()).toFixed(2) }</b> 
+                               <b>€{Number(findTotalPrice() + shippingValue + taxValue).toFixed(2) }</b> 
                             </div>
                           </div>
                           <div className="col-sm-6 ">

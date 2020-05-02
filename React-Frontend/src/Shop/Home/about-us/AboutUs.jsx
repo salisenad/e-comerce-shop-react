@@ -1,13 +1,15 @@
-import React, { Component, Fragment } from "react";
+import React, {  Fragment, useState } from "react";
 
 import './AboutUs.css'
 import Header from "../Layout/header/Header";
 
-  class AboutUs extends Component {
-    render() {
+  const AboutUs = () => {
+    const [run, setRun] = useState(false);
+
       return (
         <Fragment>
-            <Header items={JSON.parse(localStorage.getItem('cart'))}/>
+            <Header setRun={setRun} run={run}
+            items={JSON.parse(localStorage.getItem('cart'))}/>
             <div className="container-fluid position-absolute" style={{'marginTop': '13%'}}>
                 <div className="container">
                 <div className="border row p-5">
@@ -43,7 +45,6 @@ import Header from "../Layout/header/Header";
         
         </Fragment>
       );
-    }
   }
   
   export default AboutUs;
