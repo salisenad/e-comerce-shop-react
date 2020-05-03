@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Footer extends Component {
     render() { 
@@ -17,39 +18,33 @@ class Footer extends Component {
               <div className="col-6 col-md">
                   <h5 className="text-white">Features</h5>
                   <ul className="list-unstyled text-small">
-                      <li><a className="text-white" href="#">Cool stuff</a></li>
-                      <li><a className="text-white" href="#">Random feature</a></li>
-                      <li><a className="text-white" href="#">Team feature</a></li>
-                      <li><a className="text-white" href="#">Stuff for developers</a></li>
-                      <li><a className="text-white" href="#">Another one</a></li>
-                      <li><a className="text-white" href="#">Last time</a></li>
+                      <li><Link className="text-white cursor-pointer" to="/about-us">About Us</Link></li>
+                      <li><Link className="text-white  cursor-pointer" to="/contact-us">Contact</Link></li>
+                      <li><a className="text-white" href="#">Team feature</a></li>                
                   </ul>
               </div>
               <div className="col-6 col-md">
                   <h5 className="text-white">Resources</h5>
                   <ul className="list-unstyled text-small">
-                      <li><a className="text-white " href="#">Resource</a></li>
-                      <li><a className="text-white " href="#">Resource name</a></li>
-                      <li><a className="text-white " href="#">Another resource</a></li>
-                      <li><a className="text-white " href="#">Final resource</a></li>
+                  <li><Link className="text-white cursor-pointer" to="/about-us">About Us</Link></li>
+                      <li><Link className="text-white  cursor-pointer" to="/contact-us">Contact</Link></li>
+                      <li><a className="text-white" href="#">Team feature</a></li>   
                   </ul>
               </div>
               <div className="col-6 col-md">
                   <h5 className="text-white">Resources</h5>
                   <ul className="list-unstyled text-small">
-                      <li><a className="text-white" href="#">Business</a></li>
-                      <li><a className="text-white" href="#">Education</a></li>
-                      <li><a className="text-white" href="#">Government</a></li>
-                      <li><a className="text-white" href="#">Gaming</a></li>
+                  <li><Link className="text-white cursor-pointer" to="/about-us">About Us</Link></li>
+                      <li><Link className="text-white  cursor-pointer" to="/contact-us">Contact</Link></li>
+                      <li><a className="text-white" href="#">Team feature</a></li>   
                   </ul>
               </div>
               <div className="col-6 col-md">
                   <h5 className="text-white">About</h5>
                   <ul className="list-unstyled text-small">
-                      <li><a className="text-white" href="#">Team</a></li>
-                      <li><a className="text-white" href="#">Locations</a></li>
-                      <li><a className="text-white" href="#">Privacy</a></li>
-                      <li><a className="text-white" href="#">Terms</a></li>
+                  <li><Link className="text-white cursor-pointer" to="/about-us">About Us</Link></li>
+                      <li><Link className="text-white  cursor-pointer" to="/contact-us">Contact</Link></li>
+                      <li><a className="text-white" href="#">Team feature</a></li>   
                   </ul>
               </div>
           </div>
