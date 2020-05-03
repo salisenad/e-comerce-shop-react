@@ -26,26 +26,11 @@ const Checkout = (props)  => {
       setOrder({...order, [name]: value})
     }
 
-    const findSubTotalPrice = () => {
-        var priceList = []
-        var subTotalPrice = 0;
-        items.map(items => {
-          priceList.push(items.price)
-        })
-        priceList.map(prices => {
-          subTotalPrice += prices
-        })
-        return subTotalPrice
-      }
 
-      const totalPrice = () => {
-        var totalPriceList = []
+      const subTotalPrice = () => {
         var totalPrc = 0;
         items.map(items =>{
-          totalPriceList.push(items.price *  items.count)
-        })
-        totalPriceList.map(prices =>{
-          totalPrc += prices
+          totalPrc += (items.price *  items.count)
         })
         return totalPrc
     }
@@ -55,7 +40,7 @@ const Checkout = (props)  => {
     firstName: order.firstName,
     lastName: order.lastName,
     email: order.email,
-    totalPrice: (Number( totalPrice() + shippingValue + taxValue).toFixed(2) ),
+    totalPrice: (Number( subTotalPrice() + shippingValue + taxValue).toFixed(2) ),
     products:  items,
 
 };
@@ -80,7 +65,7 @@ const Checkout = (props)  => {
       
     const billingDetails = () => {
       return (
-          <div className="col-sm-12 border p-5">
+          <div className="col-sm-12 border mt-4 p-5">
                <h3 className="mb-5 font-weight-bold">Billing Address</h3>
               <div className="row">
               <div className="form-group col-sm-6">
@@ -106,7 +91,7 @@ const Checkout = (props)  => {
 
     const yourOrder = () => {
         return (
-            <div className="col-sm-12 border p-5 mb-5">
+            <div className="col-sm-12 border p-5 mt-4 mb-5">
                <h3 className="mb-5 font-weight-bold">Your Order</h3>
               <div className="row border-bottom mb-4">
               <div className="col-sm-6 font-weight-bold">Product</div>
@@ -115,15 +100,15 @@ const Checkout = (props)  => {
               <div className="row mt-3 border-bottom">
             {items.map(item =>
                 <Fragment>
-                <div className="col-sm-7 mb-3">{item.title} × {item.count}</div>
-                <div className="col-sm-5 text-right">€{Number(item.price * item.count).toFixed(2)}</div>
+                <div className="col-sm-8 mb-3">{item.title} <b>×</b>  {item.count}</div>
+                <div className="col-sm-4 text-right">€{Number(item.price * item.count).toFixed(2)}</div>
                 </Fragment>
                 )}
               </div>
 
               <div className="row border-bottom mt-3 mb-4">
               <div className="col-sm-6 font-weight-bold">Subtotal</div>
-              <div className="col-sm-6 text-right float-right">€{Number(findSubTotalPrice()).toFixed(2)}</div>
+              <div className="col-sm-6 text-right float-right">€{Number(subTotalPrice()).toFixed(2)}</div>
               <div className="col-sm-6 font-weight-bold mt-2">Shipping</div>
               <div className="col-sm-6 text-right float-right mt-3">€{Number(shippingValue).toFixed(2)}</div>
               <div className="col-sm-6 font-weight-bold mb-3 mt-2">Tax</div>
@@ -133,7 +118,7 @@ const Checkout = (props)  => {
               <div className="row">
               <div className="col-sm-6 font-weight-bold mb-3 h3 mt-2">Total</div>
               <div className="col-sm-6 text-right float-right mb-3 h5 mt-3 font-weight-bold">
-                €{Number( totalPrice() + shippingValue + taxValue).toFixed(2) }
+                €{Number( subTotalPrice() + shippingValue + taxValue).toFixed(2) }
                 </div>
               </div>
               <div className="mt-5">

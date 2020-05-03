@@ -8,7 +8,6 @@ const ViewCart = () => {
 
     const [run, setRun] = useState(false);
     const [items, setItems] = useState([]);
-    // const [count, setCount] = useState(items.count);
 
     let shippingValue = 12.50;
     let taxValue = 7.55;
@@ -26,12 +25,10 @@ const ViewCart = () => {
         )
     }
 
-
-
-      const findSubTotalPrice = () => {
+      const totalPrice = () => {
           var totalPrc = 0;
           items.map(items =>{
-            totalPrc  += items.price *  items.count
+            totalPrc += items.price *  items.count
           })
           return totalPrc
       }
@@ -49,24 +46,22 @@ const ViewCart = () => {
                     <div className="offset-sm-7"></div>
                     <div className="col-sm-5 border-style p-5">
                         <h3 className="font-weight-bold mb-4">Cart Totals</h3>
-                    <p className="font-weight-bold h6 mt-4">Subtotal price <span className="float-right">€{Number(findSubTotalPrice()).toFixed(2)}</span> </p>
+                    <p className="font-weight-bold h6 mt-4">Subtotal price <span className="float-right">€{Number(totalPrice()).toFixed(2)}</span> </p>
                     <hr className="border"/>
                 <p className="font-weight-bold h6 mt-4">Shipping 
                 <span className="float-right">€{Number(shippingValue).toFixed(2)}
                 </span> </p>
                 <p className="font-weight-bold h6 mt-4 mb-4">Tax <span className="float-right">€{Number(taxValue).toFixed(2)}</span> </p>
                 <hr className="border"/>
-                <p className="font-weight-bold h4 mt-4">Total <span className="float-right">€{Number( findSubTotalPrice() + shippingValue + taxValue).toFixed(2) }</span> </p>
+                <p className="font-weight-bold h4 mt-4">Total <span className="float-right">€{Number( totalPrice() + shippingValue + taxValue).toFixed(2) }</span> </p>
                     <div className="mt-5">
                         <Link className="btn btn-success btn-block btn-xl p-3 h3 font-weight-bold"  to="/checkout">Checkout</Link>
                     </div>
                     </div>
                 </div>
                 </div>
-
                 )
             
-           
             </div>
         )
     }

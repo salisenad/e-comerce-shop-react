@@ -37,26 +37,11 @@ const http = new CategoriesService();
       return totalCount
     };
 
-    const findSubTotalPrice = () => {
-      var priceList = []
-      var subTotalPrice = 0;
-      items.map(items => {
-        priceList.push(items.price)
-      })
-      priceList.map(prices => {
-        subTotalPrice += prices
-      })
-      return subTotalPrice
-    }
 
-    const findTotalPrice = () => {
-      var totalPriceList = []
+    const findSubTotalPrice = () => {
       var totalPrc = 0;
       items.map(items =>{
-        totalPriceList.push(items.price *  items.count)
-      })
-      totalPriceList.map(prices =>{
-        totalPrc += prices
+        totalPrc += (items.price *  items.count)
       })
       return totalPrc
   }
@@ -127,7 +112,7 @@ const http = new CategoriesService();
                 <span className="float-right">€{Number(shippingValue).toFixed(2)}
                 </span> </p>
                 <p className="font-weight-bold h6 mt-4 mb-4">Tax <span className="float-right">€{Number(taxValue).toFixed(2)}</span> </p>
-                <p className="font-weight-bold h5 mt-2">Total <span className="float-right">€{Number( findTotalPrice() + shippingValue + taxValue).toFixed(2) }</span> </p>
+                <p className="font-weight-bold h5 mt-2">Total <span className="float-right">€{Number( findSubTotalPrice() + shippingValue + taxValue).toFixed(2) }</span> </p>
                       <div className="row mt-5 ">
                     <div className="col-sm-6 ">
                           <Link className="btn btn-outline-light bg-secondary text-white float-right" to="/view-cart" style={{width:' 100%'}}>View Cart</Link>
