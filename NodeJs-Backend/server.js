@@ -10,80 +10,80 @@ app.use(bodyParser.urlencoded({extended: false}));
 var products = [
     {
         "id" : "1",
-        "title": "Product one",
+        "title": "Amazing shoes for boys",
         "price": 10,
-        "description": "Good product",
+        "description": "Good shoes",
         "allowInShop": '1',
-        "imgUrl" : 'https://i.pinimg.com/236x/24/d2/74/24d2746955831bd38a8bf62060162f2b.jpg',
+        "imgUrl" : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBMl75QM5ryxItIwRk22yBzT92XP0Zg6i1IN4QRlnWaglKAQeO&usqp=CAU',
         "categoryName": "Trockenware"
         
     },
     {
         "id" : "2",
-        "title": "Product two",
+        "title": "Another amazing shoes",
         "price": 20.20,
-        "description": "Good product",
+        "description": "Another good product",
         "allowInShop": '1',
-        "imgUrl" : 'https://thumbs.dreamstime.com/b/beautiful-attractive-girl-night-beach-sand-stars-hugs-moon-artistic-photography-137715461.jpg',
+        "imgUrl" : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTYqlqWHE0ik4be-81ANejS_rat2mweUEkEtZVDxCjCJasqDuyy&usqp=CAU',
         "categoryName": "Kuhlprodukte"
 
     },    
         
     {
         "id" : "3",
-        "title": "Product three",
-        "price": 30,
+        "title": "Lorem ipsum perfect shoes",
+        "price": 25.50,
         "description": "Good product",
         "allowInShop": '1',
-        "imgUrl" : 'https://thumbs.dreamstime.com/b/beautiful-attractive-girl-night-beach-sand-stars-hugs-moon-artistic-photography-137715461.jpg',
+        "imgUrl" : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSTGcQMA4rlyIg3hE8LF7NNSpKKC4VqZVMCZB396_2OnrQ6Uue3&usqp=CAU',
         "categoryName": "Trockenware"
 
     },  
         
     {
         "id" : "4",
-        "title": "Product three",
-        "price": 30,
+        "title": "Lorem ipsum lorm ",
+        "price": 81.55,
         "description": "Good product",
         "allowInShop": '1',
-        "imgUrl" : 'https://thumbs.dreamstime.com/b/beautiful-attractive-girl-night-beach-sand-stars-hugs-moon-artistic-photography-137715461.jpg',
+        "imgUrl" : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQOZFaxc-drPQVA7XZEKrcj-13NIonvya5gMPEkOzyZQXCy-_ZN&usqp=CAU',
         "categoryName": "Tiefkuhlprodukte"
 
     },{
         
         "id" : "5",
-        "title": "Product three",
-        "price": 30,
+        "title": "Perfect lorem shoes",
+        "price": 250.87,
         "description": "Good product",
         "allowInShop": '1',
-        "imgUrl" : 'https://thumbs.dreamstime.com/b/beautiful-attractive-girl-night-beach-sand-stars-hugs-moon-artistic-photography-137715461.jpg',
+        "imgUrl" : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTrKP7NB56QOpYe8yUQDOxwfLm7NVCQrhU2CvPQEjyXmGH2-XYE&usqp=CAU',
         "categoryName": "Trockenware"
 
     },{
         
         "id" : "6",
-        "title": "Product three",
-        "price": 30,
+        "title": "Shoes for boys",
+        "price": 40,
         "description": "Good product",
         "allowInShop": '1',
-        "imgUrl" : 'https://thumbs.dreamstime.com/b/beautiful-attractive-girl-night-beach-sand-stars-hugs-moon-artistic-photography-137715461.jpg',
+        "imgUrl" : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTUjstTTYk_Yj23afJPgebJgUaOX06b5s34znuUuyVTFVrul6K3&usqp=CAU',
         "categoryName": "Trockenware"
 
     },{
         
         "id" : "7",
-        "title": "Product three",
-        "price": 30,
+        "title": "Product seven",
+        "price": 22,
         "description": "Good product",
         "allowInShop": '1',
-        "imgUrl" : 'https://thumbs.dreamstime.com/b/beautiful-attractive-girl-night-beach-sand-stars-hugs-moon-artistic-photography-137715461.jpg',
+        "imgUrl" : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTrKP7NB56QOpYe8yUQDOxwfLm7NVCQrhU2CvPQEjyXmGH2-XYE&usqp=CAU',
         "categoryName": "Trockenware"
 
     },{
         
         "id" : "8",
-        "title": "Product three",
-        "price": 30,
+        "title": "Product eight shoes",
+        "price": 35.50,
         "description": "Good product",
         "allowInShop": '1',
         "imgUrl" : 'https://thumbs.dreamstime.com/b/beautiful-attractive-girl-night-beach-sand-stars-hugs-moon-artistic-photography-137715461.jpg',
@@ -92,11 +92,11 @@ var products = [
     },{
         
         "id" : "9",
-        "title": "Product three",
-        "price": 30,
+        "title": "Product test",
+        "price": 55,
         "description": "Good product",
         "allowInShop": '1',
-        "imgUrl" : 'https://thumbs.dreamstime.com/b/beautiful-attractive-girl-night-beach-sand-stars-hugs-moon-artistic-photography-137715461.jpg',
+        "imgUrl" : 'https://images-na.ssl-images-amazon.com/images/I/613HNKK0cWL._UL1100_.jpg',
         "categoryName": "Trockenware"
 
     },
@@ -206,6 +206,7 @@ var orders = [
     "firstName": "Senad",
     "lastName": "Salihu",
     "email": "senad.sali3@gmail.com",
+    "totalPrice": 50.55,
     "products": [
         {
             "id" : "1",
@@ -213,8 +214,9 @@ var orders = [
             "price": 10,
             "description": "Good product",
             "allowInShop": '1',
-            "imgUrl" : 'https://i.pinimg.com/236x/24/d2/74/24d2746955831bd38a8bf62060162f2b.jpg',
-            "categoryName": "Trockenware"
+            "imgUrl" : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBMl75QM5ryxItIwRk22yBzT92XP0Zg6i1IN4QRlnWaglKAQeO&usqp=CAU',
+            "categoryName": "Trockenware",
+            "count": '3'
             
         },
         {
@@ -223,9 +225,9 @@ var orders = [
             "price": 20.20, 
             "description": "Good product",
             "allowInShop": '1',
-            "imgUrl" : 'https://thumbs.dreamstime.com/b/beautiful-attractive-girl-night-beach-sand-stars-hugs-moon-artistic-photography-137715461.jpg',
-            "categoryName": "Kuhlprodukte"
-    
+            "imgUrl" : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBMl75QM5ryxItIwRk22yBzT92XP0Zg6i1IN4QRlnWaglKAQeO&usqp=CAU',
+            "categoryName": "Kuhlprodukte",
+            "count": '3' 
         },    
             
         {
@@ -235,7 +237,8 @@ var orders = [
             "description": "Good product",
             "allowInShop": '1',
             "imgUrl" : 'https://thumbs.dreamstime.com/b/beautiful-attractive-girl-night-beach-sand-stars-hugs-moon-artistic-photography-137715461.jpg',
-            "categoryName": "Trockenware"
+            "categoryName": "Trockenware",
+            "count": '3' 
     
         },  
     ]

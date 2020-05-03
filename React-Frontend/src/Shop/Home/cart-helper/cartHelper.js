@@ -4,14 +4,18 @@ export const addItem = (item = [], count = 0, next = f => f) => {
         if (localStorage.getItem('cart')) {
             cart = JSON.parse(localStorage.getItem('cart'));
         }
+        let itemExists = false;
+        for(let cartItem of cart){
+            if(cartItem.id == item.id){
+                cartItem.count++;
+                itemExists = true;
+            }
+        }
 
-                cart.push({...item, count: 1})
-
-        cart = Array.from(new Set(cart.map((product, i )=> product.id))).map(id => {
-            return cart.find(product => product.id === id);
-           
-        });
-
+        if(!itemExists){
+            cart.push({...item, count: 1});  
+        }
+    
         localStorage.setItem('cart', JSON.stringify(cart));
         next();
     }

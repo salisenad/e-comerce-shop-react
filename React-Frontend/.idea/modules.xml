@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/first-try-react.iml" filepath="$PROJECT_DIR$/.idea/first-try-react.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/react-eshop-webintel.iml" filepath="$PROJECT_DIR$/.idea/react-eshop-webintel.iml" />
     </modules>
   </component>
 </project>

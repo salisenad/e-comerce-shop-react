@@ -25,7 +25,7 @@ const ProductPages = () => {
   const [error, setError] = useState(false);
   const [modalIsOpen,setIsOpen] = useState(false);
 
-  const customStyles = {
+  const customStyles = { 
     content: {
       top:          '50%',
       left:         '50%',

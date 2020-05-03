@@ -40,7 +40,25 @@
       .cart-count-position {
         margin-left: 57%;
       }
+      .medium-cart {
+        display:none;
+      }
     }
+
+    @media only screen and (max-width: 991px) {
+     
+      .medium-cart {
+        display:none;
+      }
+    }
+    @media only screen and (min-width: 992px) {
+     
+      .mobile-cart {
+        display:none;
+      }
+    }
+    
+    
     @media only screen and (max-width: 400px) {
       .position-up-header {
         margin-top: 5%;

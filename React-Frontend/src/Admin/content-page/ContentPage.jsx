@@ -7,6 +7,7 @@ import ChildCategories from './child-categories/ChildCategories';
 import ProductPages from './product-page/ProductPages';
 import ChartDatas from './chart/Chart';
 import ChatMessage from './chat/ChatMessage';
+import Orders from './orders/Orders';
 
 const AdminRouter = ({ component: Component, ...props }) => {
     return (
@@ -33,12 +34,14 @@ class ContentPages extends Component {
       
         return (  
           <Fragment>
-             <AdminRouter exact={true} path="/category" component={CategoryPage}/>
+             <AdminRouter exact path="/category" component={CategoryPage}/>
              <AdminRouter exact path="/product" component={ProductPages}/>
              <AdminRouter exact path="/carousel" component={CarouselPage}/>
              <AdminRouter exact path="/childCategory" component={ChildCategories}/>
              <AdminRouter exact path="/dashboard" component={ChartDatas}/>
              <AdminRouter exact path="/chat" component={ChatMessage}/>
+             <AdminRouter exact path="/orders" component={Orders}/>
+
           </Fragment>
          );
     }

@@ -11,6 +11,7 @@ toast.configure()
 
   const [modalIsOpen,setIsOpen] = useState(false);
   const customStyles = { content: {
+      width:        '70%',
       top:          '50%',
       left:         '50%',
       right:        'auto',

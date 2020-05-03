@@ -55,7 +55,9 @@ const Checkout = (props)  => {
     firstName: order.firstName,
     lastName: order.lastName,
     email: order.email,
+    totalPrice: (Number( totalPrice() + shippingValue + taxValue).toFixed(2) ),
     products:  items,
+
 };
 
 

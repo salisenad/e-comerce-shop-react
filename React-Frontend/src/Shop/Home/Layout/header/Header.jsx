@@ -75,7 +75,17 @@ const http = new CategoriesService();
   }
   
   const cartList = () => (
-    <div className="cart-count-position dropleft">
+    <Fragment>
+      <div className="cart-count-position mobile-cart">
+        <Link to="/view-cart">
+      <i className="fa  fa-shopping-cart mt-3 h3 text-white cursor-pointer " 
+                  >
+                </i> </Link>
+                <span className="position-absolute mt-2  mr-1 font-weight-bold counting-shop  bg-white">
+                     {findTotalProductsCount()}
+                </span> 
+      </div>
+    <div className="cart-count-position dropleft medium-cart">
                 <i className="fa  fa-shopping-cart mt-3 h3 text-white cursor-pointer " 
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </i> 
@@ -131,6 +141,7 @@ const http = new CategoriesService();
                          : ''} 
                 </div>
             </div>
+            </Fragment>
   )
 
  const categoriesList = () => (
