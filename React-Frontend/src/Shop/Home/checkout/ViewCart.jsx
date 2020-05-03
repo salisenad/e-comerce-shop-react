@@ -1,7 +1,7 @@
 import React, { Component, Fragment, useState, useEffect } from 'react';
 import Header from '../Layout/header/Header';
 import './Checkout.css'
-import { getCart, removeItem, updateItem } from '../cart-helper/cartHelper';
+import { getCart, removeItem, addItem, subString } from '../cart-helper/cartHelper';
 import { Link } from 'react-router-dom';
 const ViewCart = () => {
     const [name, setName] = useState("");
@@ -33,9 +33,15 @@ const ViewCart = () => {
           return totalPrc
       }
 
-    const handleChange = e => {
-        setName(e.target.value);
-    };
+
+    const addToCart = (item) => {
+        addItem(item);
+      };
+
+      const subStringFromCart = (item) => {
+        subString(item);
+      };
+      
 
 
     const cartTotal = () => {
@@ -74,20 +80,18 @@ const ViewCart = () => {
                <th style={{width:'15%'}}>
                    <img src={item.imgUrl} style={{width: '100%'}} alt=""/>
                </th>
-               <td  className="align-middle">{item.title} <br/> <p style={{fontSize: '12px'}}>{item.description}</p></td>
-               <td  className="align-middle">{Number(item.price).toFixed(2)}</td>
-                <td  className="align-middle">
-                <div className="input-number">
-                <input className="form-control" type="number" onChange={handleChange} min="0" value={item.count}/>
-                <div className="input-number__add">
-                </div>
-                <div className="input-number__sub">
-                </div>
+               <td  className="align-middle ">{item.title} <br/> <p style={{fontSize: '12px'}}>{item.description}</p></td>
+               <td  className="align-middle ">€{Number(item.price).toFixed(2)}</td>
+                <td  className="align-middle ">
+                <div className="row " >
+                <button className="btn ml-1 btn-outline-secondary btn-sm" min="0" onClick={() =>{subStringFromCart(item) ;setRun(!run);} }>-</button>
+                <div className="p-1">{item.count}</div>
+                <button className="btn btn-outline-success btn-sm" onClick={() =>{addToCart(item) ;setRun(!run);} }>+</button>
                 </div>
                 </td>
-                <td  className="align-middle">{Number(item.price * item.count).toFixed(2)}</td>
-               <td  className="align-middle">
-                   <button className="btn btn-light btn-sm" onClick={() => {removeItem(item.id); setRun(!run); }}>X</button>
+                <td  className="align-middle ">€{Number(item.price * item.count).toFixed(2)}</td>
+               <td  className="align-middle ">
+                   <button className="btn btn-outline-danger btn-sm" onClick={() => {removeItem(item.id); setRun(!run); }}>X</button>
                </td>
                </tr> 
                 ) }
@@ -108,10 +112,10 @@ const ViewCart = () => {
                         <tr>
                         <th scope="col">Image</th>
                         <th scope="col">Product</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Total</th>
-                        <th scope="col"></th>
+                        <th  scope="col">Price</th>
+                        <th  scope="col">Quantity</th>
+                        <th  scope="col">Total</th>
+                        <th  scope="col"></th>
 
                         </tr>
                     </thead>
