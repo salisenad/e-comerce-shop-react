@@ -26,26 +26,12 @@ const ViewCart = () => {
         )
     }
 
-    const findSubTotalPrice = () => {
-        var priceList = []
-        var subTotalPrice = 0;
-        items.map(items => {
-          priceList.push(items.price)
-        })
-        priceList.map(prices => {
-          subTotalPrice += prices
-        })
-        return subTotalPrice
-      }
 
-      const totalPrice = () => {
-          var totalPriceList = []
+
+      const findSubTotalPrice = () => {
           var totalPrc = 0;
           items.map(items =>{
-            totalPriceList.push(items.price *  items.count)
-          })
-          totalPriceList.map(prices =>{
-            totalPrc += prices
+            totalPrc  += items.price *  items.count
           })
           return totalPrc
       }
@@ -70,7 +56,7 @@ const ViewCart = () => {
                 </span> </p>
                 <p className="font-weight-bold h6 mt-4 mb-4">Tax <span className="float-right">€{Number(taxValue).toFixed(2)}</span> </p>
                 <hr className="border"/>
-                <p className="font-weight-bold h4 mt-4">Total <span className="float-right">€{Number( totalPrice() + shippingValue + taxValue).toFixed(2) }</span> </p>
+                <p className="font-weight-bold h4 mt-4">Total <span className="float-right">€{Number( findSubTotalPrice() + shippingValue + taxValue).toFixed(2) }</span> </p>
                     <div className="mt-5">
                         <Link className="btn btn-success btn-block btn-xl p-3 h3 font-weight-bold"  to="/checkout">Checkout</Link>
                     </div>
