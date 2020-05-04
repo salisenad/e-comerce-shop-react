@@ -8,6 +8,7 @@ import ProductPages from './product-page/ProductPages';
 import ChartDatas from './chart/Chart';
 import ChatMessage from './chat/ChatMessage';
 import Orders from './orders/Orders';
+import ContactUs from './contact-us/ContactUs';
 
 const AdminRouter = ({ component: Component, ...props }) => {
     return (
@@ -41,6 +42,7 @@ class ContentPages extends Component {
              <AdminRouter exact path="/dashboard" component={ChartDatas}/>
              <AdminRouter exact path="/chat" component={ChatMessage}/>
              <AdminRouter exact path="/orders" component={Orders}/>
+             <AdminRouter exact path="/contact-us" component={ContactUs}/>
 
           </Fragment>
          );

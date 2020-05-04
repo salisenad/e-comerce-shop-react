@@ -9,10 +9,14 @@ class AdminHeader extends Component {
   }
 
   onLogout() {
+        // this.props.history.push("/");
+        window.location.reload();
+
     localStorage.removeItem("Token");
     localStorage.removeItem('username');
     localStorage.removeItem("");
-    window.location.href = '/login'
+    window.location.href = '/'
+
   }
 
   takeUserName() {

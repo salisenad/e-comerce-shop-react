@@ -83,11 +83,11 @@ const CssTextField = withStyles({
     componentDidMount() {
       this.redirect();
     }
-  
+   
     redirect() {
       if (localStorage.getItem("Token")) {
         this.props.history.push("/dashboard");
-        window.location.reload();
+        // window.location.reload();
       }else {
         // this.props.history.push('/dashboard');
         // window.location.reload();

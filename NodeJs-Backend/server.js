@@ -261,10 +261,45 @@ var carouselImages = [
     }
 ]
 
+var customerMessage = [
+    {
+        "id": '1',
+        "customerName" : "Senad Sali",
+        "customerEmail": 'senad.sali3@gmail.com',
+        "customerMessage": 'Great system'
+    },
+    {
+        "id": "2",
+        "customerName" : "Lorem ipsumm",
+        "customerEmail": 'lorem.ipsum.gmail.com',
+        "customerMessage": 'Lorem ipsum'
+    },
+]
+
+//Crud for customer message
+app.get('/customerMessage',function(request,response) {
+    response.send(customerMessage)
+})
+
+app.post('/create/customerMessage', function(request, response) {
+    var customMessage = request.body;
+    if(!customMessage || customMessage.customerName === "") {
+        response.status(500).send({error: "Your message must have an name of customer"})
+    }else {
+        customerMessage.push(customMessage);
+        if(!customMessage.id) {
+            customMessage.id = Math.floor((Math.random() * 10000) + 1).toString()
+        }
+        response.status(200).send(customMessage)
+    }
+})
+
+//
 //Crud for orders
 app.get('/orders', function(request, response){
     response.send(orders)
 }) 
+
 
 app.post('/create/orders', function(request, response) {
     var order = request.body;

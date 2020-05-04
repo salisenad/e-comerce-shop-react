@@ -1,13 +1,20 @@
 import React, { Component, Fragment, useState } from "react";
 import Header from "../Layout/header/Header";
 import TextField from "@material-ui/core/TextField";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import { withStyles } from "@material-ui/core/styles";
 
+import { withStyles } from "@material-ui/core/styles";
+import ContactUsService from "../../../services/contactUs-service";
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure()
+
+const http = new ContactUsService()
   const  ContactUs = () => {
     const [run, setRun] = useState(false);
-    const CssTextField = withStyles({
+    const initalFormState = {id: '', customerName: '', customerEmail: '' , customerMessage: ''}
+    const [contactUs, setContactUs] = useState(initalFormState)
+    const CssTextField = withStyles({ 
       root: {
         "& label.Mui-focused": {
           color: "#1B1B23",
@@ -34,30 +41,53 @@ import { withStyles } from "@material-ui/core/styles";
         }
       }
     })(TextField);
+
+
+    const handleInputChange = event => {
+      const {name, value} = event.target
+      setContactUs({...contactUs, [name]: value})
+    }
+    const clickSubmit = event => {
+      event.preventDefault();
+            http.createContactUs(contactUs).then(data => {
+        console.log('contactus qe pe qoj', contactUs)
+          successNotify()
+          window.location.href = '/'
+
+       });
+      };
+
+      const successNotify = () => {toast.success('Message sent successfully!')}
+
+
       return (
         <Fragment>
         <Header setRun={setRun} run={run}
         items={JSON.parse(localStorage.getItem('cart'))}/>
         <div className="container-fluid position-absolute" style={{'marginTop': '13%'}}>
+
         <div className="container">
             <div className="border p-5">
             <h3 className="text-center">Contact Us</h3>
-            <form autoComplete="off" className="col-md-6 mb-5 offset-md-3  "
+            <form autoComplete="off" onSubmit={clickSubmit} className="col-md-6 mb-5 offset-md-3  "
             >
                 <div className="form-group">
-                <CssTextField style={{width: "100%"}}
-                    id="custom-css-outlined-input" label="Name"
+                  <label>First and last name</label>
+                <input className="form-control" style={{width: "100%"}} onChange={handleInputChange}
+                    id="custom-css-outlined-input" name="customerName" placeholder="First And Last Name"
                     margin="normal"
                 />
                 </div>
                 <div className="form-group">
-                <CssTextField style={{width: "100%"}}
-                    id="custom-css-outlined-input" label="Email"
+                  <label>Email</label>
+                <input className="form-control" style={{width: "100%"}} onChange={handleInputChange}
+                    id="custom-css-outlined-input" name="customerEmail" placeholder="Email"
                     margin="normal"
                 />
                 </div>
                 <div className="form-group" >
-                <textarea style={{width: "100%", marginTop: "25px" }}
+                  <label>Send us a message</label>
+                <textarea className="form-control" style={{width: "100%", marginTop: "25px" }} name="customerMessage" onChange={handleInputChange}
                     className="lol"
                     placeholder="Send us a message"
                     type='text'
@@ -70,6 +100,8 @@ import { withStyles } from "@material-ui/core/styles";
             </form>
             </div>
           </div>
+
+          
         </div>
 
       </Fragment>

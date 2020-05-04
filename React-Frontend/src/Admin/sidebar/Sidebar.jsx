@@ -18,7 +18,9 @@ class AdminSidebar extends Component {
                 <Link  className="text-white" to="/category">Category</Link>
                 <Link  className="text-white" to="/childCategory">Sub Category</Link>
                 <Link  className="text-white" to="/chat">Chat</Link>
+                <Link  className="text-white" to="/contact-us">Customer Messages</Link>
 
+                
 
             </div>
         </Fragment>

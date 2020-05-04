@@ -10,8 +10,8 @@ const http = new CarouselService();
 toast.configure()
 
 const CarouselPage = () => {
-
-  useEffect(() => {
+ 
+  useEffect(() => { 
     loadCarousels();
   }, []);
 
