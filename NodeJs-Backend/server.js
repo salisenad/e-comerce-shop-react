@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var PORT = process.env.PORT || 8080
 var bodyParser = require('body-parser');
 var cors = require('cors');
 app.use(cors()) // Use this after the variable declaration
@@ -434,8 +435,11 @@ app.delete('/carousels/:carouselsId', function(request, response){
 });
 //
 
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('frontend/build'))
+}
 
 
-app.listen(8080, function(){
+app.listen(PORT, function(){
     console.log("Api runing on port 8080!");
 })

@@ -84,7 +84,7 @@ const ViewCart = () => {
                <td  className="align-middle ">€{Number(item.price).toFixed(2)}</td>
                 <td  className="align-middle ">
                 <div className="row " >
-                <button className="btn ml-1 btn-outline-secondary btn-sm" min="0" onClick={() =>{subStringFromCart(item) ;setRun(!run);} }>-</button>
+                <button className="btn ml-3 btn-outline-secondary btn-sm"  onClick={() =>{subStringFromCart(item) ;setRun(!run);} }>-</button>
                 <div className="p-1">{item.count}</div>
                 <button className="btn btn-outline-success btn-sm" onClick={() =>{addToCart(item) ;setRun(!run);} }>+</button>
                 </div>
