@@ -2,6 +2,9 @@ import { API } from "../config";
 
 
 export class CarouselService {
+
+
+    
     getCarousels = () => {
         let carousels = new Promise ((resolve, reject) => {
             fetch(`${API}/carousels`)
